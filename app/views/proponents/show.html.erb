@@ -13,7 +13,7 @@
       </div>
       <div class='card-footer d-flex justify-content-between'>
         <%= link_to 'Back to list', proponents_path, class: 'btn btn-primary btn-sm' %>
-        <button type="submit" class="btn btn-primary btn-sm">Edit</button>
+        <%= link_to 'Edit', edit_proponent_path(@proponent), class: 'btn btn-primary btn-sm' %>
       </div>
     </div>
   </div>
