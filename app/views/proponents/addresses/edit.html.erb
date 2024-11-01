@@ -6,7 +6,8 @@
     <div class='card-body'>
       <%= render 'proponents/addresses/form', address: @proponent.address, proponent_id: @proponent.id %>
     </div>
-    <div class='card-footer d-flex justify-content-end'>
+    <div class='card-footer d-flex justify-content-between'>
+      <%= link_to 'Cancel', proponent_path(@proponent), class: 'btn btn-primary btn-sm' %>
       <button type="submit" form="edit_<%= dom_id(@proponent.address) %>" class="btn btn-primary btn-sm">Save</button>
     </div>
   </div>
