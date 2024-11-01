@@ -1,9 +1,9 @@
-<div class='row'>
+<div class='row my-3'>
   <h1>Proponents</h1>
 </div>
 
-<div class='row mt-3'>
-  <div class='col col-sm-4'>
+<div class='row'>
+  <div class='col col-sm-6'>
     <div class='card'>
       <div class='card-header'>
         <h6>Search</h6>
@@ -19,7 +19,8 @@
             <input type="password" class="form-control">
           </div>
         </form>      </div>
-        <div class='card-footer d-flex justify-content-end'>
+        <div class='card-footer d-flex justify-content-between'>
+          <%= link_to 'New', new_proponent_path, class: 'btn btn-primary btn-sm' %>
           <button type="submit" class="btn btn-primary btn-sm">Search</button>
         </div>
     </div>
@@ -28,54 +29,6 @@
 
 <div class='row mt-3'>
   <div class='col'>
-    <div class='card'>
-      <div class='card-header'>
-        <h6>List</h6>
-      </div>
-      <div class='card-body'>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">CPF</th>
-              <th scope="col">Phone</th>
-              <th scope="col">#</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>
-                <a href="#">View</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>
-                <a href="#">View</a>
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>
-                <a href="#">View</a>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class='card-footer'>
-        Pagination
-      </div>
-    </div>
+    <%= render 'proponents/datagrid', records: @proponents, pagy: nil %>
   </div>
 </div>

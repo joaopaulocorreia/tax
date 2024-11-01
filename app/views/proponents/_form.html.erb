@@ -1,0 +1,24 @@
+<%# locals: (record:, disabled: false) %>
+
+<%= form_for(record) do |form| %>
+  <div class='row'>
+    <div class="col col-6">
+      <%= form.label 'Name', class: 'form-label' %>
+      <%= form.text_field :name, class: "form-control #{'is-invalid' if record.errors.has_key? :name }", disabled: %>
+
+      <div class="invalid-feedback"> <%= record.errors[:name].first %> </div>
+    </div>
+    <div class="col col-3">
+      <%= form.label 'CPF', class: 'form-label' %>
+      <%= form.text_field :cpf, class: "form-control #{'is-invalid' if record.errors.has_key? :cpf }", disabled: %>
+
+      <div class="invalid-feedback"> <%= record.errors[:cpf].first %> </div>
+    </div>
+    <div class="col col-3">
+      <%= form.label 'Birthday', class: 'form-label' %>
+      <%= form.date_field :birthday, class: "form-control #{'is-invalid' if record.errors.has_key? :birthday }", disabled: %>
+
+      <div class="invalid-feedback"> <%= record.errors[:birthday].first %> </div>
+    </div>
+  </div>
+<% end %>

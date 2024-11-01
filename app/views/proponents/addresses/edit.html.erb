@@ -1,0 +1,13 @@
+<%= turbo_frame_tag :address do %>
+  <div class='card'>
+    <div class='card-header'>
+      <h6>Address</h6>
+    </div>
+    <div class='card-body'>
+      <%= render 'proponents/addresses/form', address: @proponent.address, proponent_id: @proponent.id %>
+    </div>
+    <div class='card-footer d-flex justify-content-end'>
+      <button type="submit" form="edit_<%= dom_id(@proponent.address) %>" class="btn btn-primary btn-sm">Save</button>
+    </div>
+  </div>
+<% end %>

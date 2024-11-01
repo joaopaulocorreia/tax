@@ -14,5 +14,7 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
-  resources :proponents
+  resources :proponents do
+    resource :address, module: :proponents
+  end
 end

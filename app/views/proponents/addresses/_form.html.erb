@@ -1,0 +1,42 @@
+<%# locals: (address:, proponent_id:, disabled: false) %>
+
+<%= form_for address, url: proponent_address_path(proponent_id) do |form| %>
+  <div class='row'>
+    <div class="col col-4">
+      <%= form.label 'Address', class: 'form-label' %>
+      <%= form.text_field :address, class: "form-control #{'is-invalid' if address.errors.has_key? :address }", disabled: %>
+
+      <div class="invalid-feedback"> <%= address.errors[:address].first %> </div>
+    </div>
+    <div class="col col-1">
+      <%= form.label 'Number', class: 'form-label' %>
+      <%= form.text_field :number, class: "form-control #{'is-invalid' if address.errors.has_key? :number }", disabled: %>
+
+      <div class="invalid-feedback"> <%= address.errors[:number].first %> </div>
+    </div>
+    <div class="col col-3">
+      <%= form.label 'Neighborhood', class: 'form-label' %>
+      <%= form.text_field :neighborhood, class: "form-control #{'is-invalid' if address.errors.has_key? :neighborhood }", disabled: %>
+
+      <div class="invalid-feedback"> <%= address.errors[:neighborhood].first %> </div>
+    </div>
+    <div class="col col-2">
+      <%= form.label 'City', class: 'form-label' %>
+      <%= form.text_field :city, class: "form-control #{'is-invalid' if address.errors.has_key? :city }", disabled: %>
+
+      <div class="invalid-feedback"> <%= address.errors[:city].first %> </div>
+    </div>
+    <div class="col col-2">
+      <%= form.label 'State', class: 'form-label' %>
+      <%= form.text_field :state, class: "form-control #{'is-invalid' if address.errors.has_key? :state }", disabled: %>
+
+      <div class="invalid-feedback"> <%= address.errors[:state].first %> </div>
+    </div>
+    <div class="col col-2">
+      <%= form.label 'Postal code', class: 'form-label' %>
+      <%= form.text_field :postal_code, class: "form-control #{'is-invalid' if address.errors.has_key? :postal_code }", disabled: %>
+
+      <div class="invalid-feedback"> <%= address.errors[:postal_code].first %> </div>
+    </div>
+  </div>
+<% end %>

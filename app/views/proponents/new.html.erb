@@ -1,0 +1,20 @@
+<div class='row my-3'>
+  <h1>Proponents</h1>
+</div>
+
+<div class='row'>
+  <div class='col col-sm-12'>
+    <div class='card'>
+      <div class='card-header'>
+        <h6>New</h6>
+      </div>
+      <div class='card-body'>
+        <%= render 'proponents/form', record: @proponent %>
+      </div>
+      <div class='card-footer d-flex justify-content-between'>
+        <%= link_to 'Back to list', proponents_path, class: 'btn btn-primary btn-sm' %>
+        <button type="submit" form="<%= dom_id(@proponent) %>" class="btn btn-primary btn-sm">Save</button>
+      </div>
+    </div>
+  </div>
+</div>

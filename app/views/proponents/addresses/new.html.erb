@@ -1,0 +1,14 @@
+<%= turbo_frame_tag :address do %>
+  <div class='card'>
+    <div class='card-header'>
+      <h6>Address</h6>
+    </div>
+    <div class='card-body'>
+      <%= render 'proponents/addresses/form', address: @proponent.address || @proponent.build_address, proponent_id: @proponent.id %>
+    </div>
+    <div class='card-footer d-flex justify-content-between'>
+      <%= link_to 'Cancel', proponent_path(@proponent), class: 'btn btn-primary btn-sm' %>
+      <button type="submit" form="<%= dom_id(@proponent.build_address) %>" class="btn btn-primary btn-sm">Save</button>
+    </div>
+  </div>
+<% end %>
