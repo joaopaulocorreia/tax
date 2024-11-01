@@ -12,8 +12,8 @@
         <%= render 'proponents/form', record: @proponent %>
       </div>
       <div class='card-footer d-flex justify-content-between'>
-        <%= link_to 'Cancel', proponent_path(@proponent), class: 'btn btn-primary btn-sm' %>
-        <button type="submit" form="edit_<%= dom_id(@proponent) %>" class="btn btn-primary btn-sm">Save</button>
+        <%= link_to 'Cancel', proponent_path(@proponent), class: 'btn btn-danger' %>
+        <button type="submit" form="edit_<%= dom_id(@proponent) %>" class="btn btn-success">Save</button>
       </div>
     </div>
   </div>

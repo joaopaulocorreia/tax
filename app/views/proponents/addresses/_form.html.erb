@@ -2,19 +2,19 @@
 
 <%= form_for address, url: proponent_address_path(proponent_id) do |form| %>
   <div class='row'>
-    <div class="col col-4">
+    <div class="col col-6">
       <%= form.label 'Address', class: 'form-label' %>
       <%= form.text_field :address, class: "form-control #{'is-invalid' if address.errors.has_key? :address }", disabled: %>
 
       <div class="invalid-feedback"> <%= address.errors[:address].first %> </div>
     </div>
-    <div class="col col-1">
+    <div class="col col-2">
       <%= form.label 'Number', class: 'form-label' %>
       <%= form.text_field :number, class: "form-control #{'is-invalid' if address.errors.has_key? :number }", disabled: %>
 
       <div class="invalid-feedback"> <%= address.errors[:number].first %> </div>
     </div>
-    <div class="col col-3">
+    <div class="col col-4">
       <%= form.label 'Neighborhood', class: 'form-label' %>
       <%= form.text_field :neighborhood, class: "form-control #{'is-invalid' if address.errors.has_key? :neighborhood }", disabled: %>
 
