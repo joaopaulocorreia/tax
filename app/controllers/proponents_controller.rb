@@ -9,7 +9,6 @@ class ProponentsController < ApplicationController
 
   def show
     @proponent = Proponent.find(params[:id])
-    @address = @proponent.address || Address.new
   end
 
   def create

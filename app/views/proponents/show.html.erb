@@ -21,10 +21,10 @@
 
 <div class='row mt-3'>
   <div class='col col-sm-12'>
-    <%= turbo_frame_tag :address do %>
-      <% if @proponent.address %>
-        <%= turbo_frame_tag :address, src: proponent_address_path(@proponent) %>
-      <% else %>
+    <% if @proponent.address %>
+      <%= turbo_frame_tag :address, src: proponent_address_path(@proponent) %>
+    <% else %>
+      <%= turbo_frame_tag :address do %>
         <div class='card'>
           <div class='card-header d-flex justify-content-between'>
             <h6>Address</h6>
