@@ -1,0 +1,39 @@
+services:
+  app:
+    container_name: app
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    env_file:
+      - .env
+    ports:
+     - 3000:3000
+    tty: true
+    stdin_open: true
+    volumes:
+      - .:/rails
+    depends_on:
+      - postgres
+      - redis
+
+  postgres:
+    container_name: postgres
+    image: postgres:16
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+
+  redis:
+    container_name: redis
+    image: redis:7
+    restart: unless-stopped
+    command: redis-server
+    volumes:
+      - redis-data:/data
+
+volumes:
+  redis-data:
+  postgres-data:
