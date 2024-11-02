@@ -1,5 +1,5 @@
 class ProponentsController < ApplicationController
-  before_action :set_proponent, only: [:show, :edit, :update]
+  before_action :set_proponent, only: [:show, :edit, :update, :destroy]
 
   def index
     @proponents = Proponent.all
@@ -28,6 +28,12 @@ class ProponentsController < ApplicationController
     else
       render :edit, status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @proponent.destroy
+
+    redirect_to proponents_path, notice: 'Proponent destroyed with success'
   end
 
   private

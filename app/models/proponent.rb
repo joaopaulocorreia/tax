@@ -3,6 +3,6 @@ class Proponent < ApplicationRecord
   validates :cpf, presence: true
   validates :birthday, presence: true
 
-  has_one :address
-  has_many :contacts
+  has_one :address, dependent: :destroy
+  has_many :contacts, dependent: :destroy
 end

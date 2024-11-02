@@ -8,7 +8,11 @@
     </div>
     <div class='card-footer d-flex justify-content-between'>
       <%= link_to 'Back to list', proponents_path, class: 'btn btn-dark' %>
-      <%= link_to 'Edit', edit_proponent_path(@proponent), class: 'btn btn-primary' %>
+
+      <div class='d-flex justify-content-between gap-2'>
+        <%= link_to "Delete", proponent_path(@proponent), class: 'btn btn-danger', data: { "turbo-method": :delete, "turbo-confirm": "Are you sure about that?" } %>
+        <%= link_to 'Edit', edit_proponent_path(@proponent), class: 'btn btn-primary' %>
+      </div>
     </div>
   </div>
 <% end %>
