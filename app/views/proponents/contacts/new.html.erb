@@ -14,7 +14,9 @@
 
   <div class='row mt-3'>
     <div class='col col-12'>
-      <%= render 'proponents/contacts/datagrid', contacts: @proponent.contacts %>
+      <% if @proponent.contacts.count.positive? %>
+        <%= render 'proponents/contacts/datagrid', contacts: @proponent.contacts %>
+      <% end %>
     </div>
   </div>
 <% end %>

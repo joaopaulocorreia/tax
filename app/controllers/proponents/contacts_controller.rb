@@ -16,6 +16,13 @@ module Proponents
       end
     end
 
+    def destroy
+      @contact = @proponent.contacts.find(params[:id])
+      @contact.destroy
+
+      redirect_to new_proponent_contact_path(@proponent), notice: 'Contact destroyed with success'
+    end
+
     private
 
     def set_proponent

@@ -16,11 +16,15 @@
       </thead>
       <tbody>
         <% contacts.each do |contact| %>
+          <%= next unless contact.id %>
+
           <tr>
             <th scope="row"><%= contact.id %></th>
             <td><%= contact.phone %></td>
             <td><%= contact.category %></td>
-            <td> <a href="">Remove</a> </td>
+            <td>
+              <%= link_to "Delete", proponent_contact_path(@proponent.id, contact.id), data: { "turbo-method": :delete, "turbo-confirm": "Are you sure about that?" } %>
+            </td>
           </tr>
         <% end %>
       </tbody>
