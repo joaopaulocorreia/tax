@@ -3,7 +3,11 @@ module Proponents
     before_action :set_proponent
 
     def new; end
-    def show; end
+
+    def show
+      redirect_to new_proponent_address_path(@proponent) unless @proponent.address
+    end
+
     def edit; end
 
     def create
