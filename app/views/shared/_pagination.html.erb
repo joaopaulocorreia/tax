@@ -1,0 +1,21 @@
+<%# locals: (records:, path:) %>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">
+    <li class="page-item <%= 'disabled' unless records.prev_page %>">
+      <%= link_to 'Previous', "#{path}?page=#{records.prev_page}", class: 'page-link' %>
+    </li>
+
+    <% records.total_pages.times do |time| %>
+      <% time += 1 %>
+
+      <li class="page-item <%= records.current_page == time ? 'active' : nil %>">
+        <%= link_to time, "#{path}?page=#{time}", class: 'page-link' %>
+      </li>
+    <% end %>
+
+    <li class="page-item <%= 'disabled' unless records.next_page %>">
+      <%= link_to 'Next', "#{path}?page=#{records.next_page}", class: 'page-link' %>
+    </li>
+  </ul>
+</nav>

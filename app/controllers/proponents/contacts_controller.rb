@@ -4,6 +4,7 @@ module Proponents
 
     def new
       @contact = @proponent.contacts.new
+      @contacts = @proponent.contacts.page(params[:page]).per(5)
     end
 
     def create
