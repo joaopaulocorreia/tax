@@ -16,6 +16,6 @@ Rails.application.routes.draw do
 
   resources :proponents do
     resource :address, module: :proponents
-    resources :contacts, module: :proponents
+    resources :contacts, only: [:new, :create, :destroy], module: :proponents
   end
 end

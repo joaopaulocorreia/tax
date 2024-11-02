@@ -1,29 +1,20 @@
-<div class='card'>
-  <div class="card-header">
-    <h6>Contacts</h6>
+<%= render 'proponents/layout' do %>
+  <div class='row'>
+    <div class='col col-6'>
+      <div class='card'>
+        <div class='card-header'>
+          <h6>New</h6>
+        </div>
+        <div class='card-body'>
+          <%= render 'proponents/contacts/form', contact: @contact, proponent_id: @proponent.id  %>
+        </div>
+      </div>
+    </div>
   </div>
-  <div class='card-body'>
-    <%= render 'proponents/contacts/form', contact: @contact, proponent_id: @proponent.id %>
 
-    <table class="table">
-      <thead>
-        <tr>
-          <th scope="col">#</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Type</th>
-          <th scope="col">#</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @proponent.contacts.each do |contact| %>
-          <tr>
-            <th scope="row"><%= contact.id %></th>
-            <td><%= contact.phone %></td>
-            <td><%= contact.category %></td>
-            <td> <a href="">Remove</a> </td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <div class='row mt-3'>
+    <div class='col col-12'>
+      <%= render 'proponents/contacts/datagrid', contacts: @proponent.contacts %>
+    </div>
   </div>
-</div>
+<% end %>

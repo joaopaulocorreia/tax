@@ -6,13 +6,13 @@
   <div class='col col-12'>
     <ul class="nav nav-pills">
       <li class="nav-item">
-        <%= link_to 'Proponent', proponent_path(@proponent), class: 'nav-link active' %>
+        <%= link_to 'Proponent', proponent_path(@proponent), class: "nav-link #{active_menu('proponents')}" %>
       </li>
       <li class="nav-item">
-        <%= link_to 'Address', proponent_address_path(@proponent), class: 'nav-link' %>
+        <%= link_to 'Address', proponent_address_path(@proponent), class: "nav-link #{active_menu('proponents/addresses')}" %>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Contacts</a>
+        <%= link_to 'Contacts', new_proponent_contact_path(@proponent), class: "nav-link #{active_menu('proponents/contacts')}" %>
       </li>
     </ul>
   </div>

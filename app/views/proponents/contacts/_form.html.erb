@@ -10,12 +10,12 @@
     </div>
     <div class="col col-auto">
       <%= form.label 'Category', class: 'form-label' %>
-      <%= form.text_field :category, class: "form-control #{'is-invalid' if contact.errors.has_key? :category }", disabled: %>
+      <%= form.select :category, [['Personal', 'personal'], ['Reference', 'reference']], { selected: contact.category }, class: "form-select #{'is-invalid' if contact.errors.has_key? :category }", disabled: %>
 
       <div class="invalid-feedback"> <%= contact.errors[:category].first %> </div>
     </div>
     <div class='col col-auto'>
-      <button type="button" class='btn btn-success mt-4'>Save</button>
+      <button type="submit" class='btn btn-success mt-4'>Save</button>
     </div>
   </div>
 <% end %>
