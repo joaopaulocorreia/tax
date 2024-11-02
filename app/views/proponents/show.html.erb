@@ -1,92 +1,14 @@
-<div class='row my-3'>
-  <h1>Proponents</h1>
-</div>
-
-<div class='row'>
-  <div class='col col-sm-12'>
-    <div class='card'>
-      <div class='card-header'>
-        <h6>Show</h6>
-      </div>
-      <div class='card-body'>
-        <%= render 'proponents/form', record: @proponent, disabled: true %>
-      </div>
-      <div class='card-footer d-flex justify-content-between'>
-        <%= link_to 'Back to list', proponents_path, class: 'btn btn-dark' %>
-        <%= link_to 'Edit', edit_proponent_path(@proponent), class: 'btn btn-primary' %>
-      </div>
+<%= render 'proponents/layout' do %>
+  <div class='card'>
+    <div class='card-header'>
+      <h6>Show</h6>
+    </div>
+    <div class='card-body'>
+      <%= render 'proponents/form', record: @proponent, disabled: true %>
+    </div>
+    <div class='card-footer d-flex justify-content-between'>
+      <%= link_to 'Back to list', proponents_path, class: 'btn btn-dark' %>
+      <%= link_to 'Edit', edit_proponent_path(@proponent), class: 'btn btn-primary' %>
     </div>
   </div>
-</div>
-
-<div class='row mt-3'>
-  <div class='col col-sm-12'>
-    <% if @proponent.address %>
-      <%= turbo_frame_tag :address, src: proponent_address_path(@proponent) %>
-    <% else %>
-      <%= turbo_frame_tag :address do %>
-        <div class='card'>
-          <div class='card-header d-flex justify-content-between'>
-            <h6>Address</h6>
-            <%= link_to 'New', new_proponent_address_path(@proponent), class: 'btn btn-primary' %>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-</div>
-
-<div class='row mt-3'>
-  <div class='col col-sm-12'>
-    <div class='card'>
-      <div class="card-header">
-        <h6>Contacts</h6>
-        <form>
-          <div class='row align-items-center'>
-            <div class='col col-auto'>
-              <label for="phone">Phone</label>
-              <input type="text" name="phone" class='form-control'>
-            </div>
-            <div class='col col-auto'>
-              <label for="phone">Phone</label>
-              <select class='form-select'>
-                <option value="personal">Personal</option>
-                <option value="reference">Reference</option>
-              </select>
-            </div>
-            <div class='col col-auto'>
-              <button type="button" class='btn btn-success mt-4'>Save</button>
-            </div>
-          </div>
-        </form>
-      </div>
-      <div class='card-body'>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Phone</th>
-              <th scope="col">Type</th>
-              <th scope="col">#</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>(14) 991058060</td>
-              <td>Personal</td>
-              <td>
-                <div class='d-flex justify-content-center g-3'>
-                  <a href="">Remove</a>
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-      <div class='card-footer'>
-
-      </div>
-    </div>
-  </div>
-</div>
+<% end %>

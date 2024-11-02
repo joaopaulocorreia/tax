@@ -1,7 +1,5 @@
 module Proponents
   class AddressesController < ApplicationController
-    layout false
-
     before_action :set_proponent
 
     def new; end
@@ -12,9 +10,9 @@ module Proponents
       @address = @proponent.create_address address_params
 
       if @address.save
-        render :show
+        redirect_to proponent_address_path(@proponent), notice: 'Address created with success'
       else
-        render :new
+        render :new, status: :unprocessable_entity
       end
     end
 
@@ -22,9 +20,9 @@ module Proponents
       @address = @proponent.address
 
       if @address.update(address_params)
-        render :show
+        redirect_to proponent_address_path(@proponent), notice: 'Address updated with success'
       else
-        render :edit
+        render :edit, status: :unprocessable_entity
       end
     end
 

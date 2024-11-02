@@ -1,6 +1,4 @@
 class Contact < ApplicationRecord
   validates :phone, presence: true
-  validates :type, presence: true
-
-  enum :type, [ :personal, :reference ]
+  validates :category, inclusion: { in: [ 'personal', 'reference' ] }
 end

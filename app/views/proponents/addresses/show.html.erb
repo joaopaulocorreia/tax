@@ -1,4 +1,4 @@
-<%= turbo_frame_tag :address do %>
+<%= render 'proponents/layout' do %>
   <div class='card'>
     <div class='card-header'>
       <h6>Address</h6>
@@ -6,7 +6,8 @@
     <div class='card-body'>
       <%= render 'proponents/addresses/form', address: @proponent.address, proponent_id: @proponent.id, disabled: true %>
     </div>
-    <div class='card-footer d-flex justify-content-end'>
+    <div class='card-footer d-flex justify-content-between'>
+      <%= link_to 'Back to list', proponents_path, class: 'btn btn-dark' %>
       <%= link_to 'Edit', edit_proponent_address_path(@proponent), class: 'btn btn-primary' %>
     </div>
   </div>

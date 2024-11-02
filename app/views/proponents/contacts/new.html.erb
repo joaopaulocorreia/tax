@@ -1,0 +1,29 @@
+<div class='card'>
+  <div class="card-header">
+    <h6>Contacts</h6>
+  </div>
+  <div class='card-body'>
+    <%= render 'proponents/contacts/form', contact: @contact, proponent_id: @proponent.id %>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Phone</th>
+          <th scope="col">Type</th>
+          <th scope="col">#</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @proponent.contacts.each do |contact| %>
+          <tr>
+            <th scope="row"><%= contact.id %></th>
+            <td><%= contact.phone %></td>
+            <td><%= contact.category %></td>
+            <td> <a href="">Remove</a> </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

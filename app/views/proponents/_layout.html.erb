@@ -1,0 +1,25 @@
+<div class='row my-3'>
+  <h1>Proponents</h1>
+</div>
+
+<div class='row'>
+  <div class='col col-12'>
+    <ul class="nav nav-pills">
+      <li class="nav-item">
+        <%= link_to 'Proponent', proponent_path(@proponent), class: 'nav-link active' %>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Address', proponent_address_path(@proponent), class: 'nav-link' %>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Contacts</a>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class='row mt-3'>
+  <div class='col col-sm-12'>
+    <%= yield %>
+  </div>
+</div>

@@ -1,0 +1,21 @@
+<%# locals: (contact:, proponent_id:, disabled: false) %>
+
+<%= form_for contact, url: proponent_contacts_path(proponent_id) do |form| %>
+  <div class='row align-items-center'>
+    <div class="col col-auto">
+      <%= form.label 'Phone', class: 'form-label' %>
+      <%= form.text_field :phone, class: "form-control #{'is-invalid' if contact.errors.has_key? :phone }", disabled: %>
+
+      <div class="invalid-feedback"> <%= contact.errors[:phone].first %> </div>
+    </div>
+    <div class="col col-auto">
+      <%= form.label 'Category', class: 'form-label' %>
+      <%= form.text_field :category, class: "form-control #{'is-invalid' if contact.errors.has_key? :category }", disabled: %>
+
+      <div class="invalid-feedback"> <%= contact.errors[:category].first %> </div>
+    </div>
+    <div class='col col-auto'>
+      <button type="button" class='btn btn-success mt-4'>Save</button>
+    </div>
+  </div>
+<% end %>
