@@ -4,7 +4,8 @@ class CreateProponents < ActiveRecord::Migration[7.2]
       t.string :name, null: false
       t.string :cpf, null: false
       t.date :birthday, null: false
-      t.float :salary
+      t.float :salary, null: false
+      t.float :tax, null: false
 
       t.timestamps
     end
