@@ -14,6 +14,8 @@ Rails.application.routes.draw do
 
   get 'dashboard', to: 'dashboard#index'
 
+  get 'calculate_tax', to: 'calculate_tax#calculate'
+
   resources :proponents do
     resource :address, module: :proponents
     resources :contacts, only: [:new, :create, :destroy], module: :proponents

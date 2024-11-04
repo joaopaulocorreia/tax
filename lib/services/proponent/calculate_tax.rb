@@ -9,7 +9,7 @@ module Services
       private
 
       def find_group(salary)
-        return Failure :salary_cannot_be_negative unless salary.positive?
+        return Failure :salary_cannot_be_negative if salary.negative?
 
         tax = TaxTable.where(":salary >= initial and :salary <= final", salary:).take
         tag = tax&.tag
