@@ -19,3 +19,5 @@ Style/FormatString:
   Enabled: false
 Rails/HasManyOrHasOneDependent:
   Enabled: false
+Rails/UniqueValidationWithoutIndex:
+  Enabled: false

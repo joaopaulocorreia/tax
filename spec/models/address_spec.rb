@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Address, type: :model do
@@ -76,7 +78,7 @@ RSpec.describe Address, type: :model do
     context 'proponent' do
       describe 'missing' do
         let(:proponent_id) { '' }
-        it { expect(record.errors[:proponent].first).to eq("must exist") }
+        it { expect(record.errors[:proponent].first).to eq('must exist') }
       end
     end
   end

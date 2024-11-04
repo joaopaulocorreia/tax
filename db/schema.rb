@@ -33,6 +33,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_01_124329) do
     t.bigint "proponent_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["phone"], name: "index_contacts_on_phone", unique: true
     t.index ["proponent_id"], name: "index_contacts_on_proponent_id"
   end
 

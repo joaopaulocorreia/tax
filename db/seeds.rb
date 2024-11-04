@@ -15,18 +15,18 @@ t_two   = TaxTable.create! initial: 1045.01, final: 2089.6,  percentage: 9, tag:
 t_three = TaxTable.create! initial: 2089.61, final: 3134.4,  percentage:  12, tag: :group_three, calculated_tax: 125.34
 t_four  = TaxTable.create! initial: 3134.41, final: 6101.06, percentage:  14, tag: :group_four,  calculated_tax: 415.33
 
-10.times do |i|
+10.times do |_i|
   FactoryBot.create :proponent, tax_table: t_one
 end
 
-8.times do |i|
+8.times do |_i|
   FactoryBot.create :proponent, tax_table: t_two
 end
 
-5.times do |i|
+5.times do |_i|
   FactoryBot.create :proponent, tax_table: t_three
 end
 
-3.times do |i|
+3.times do |_i|
   FactoryBot.create :proponent, tax_table: t_four
 end

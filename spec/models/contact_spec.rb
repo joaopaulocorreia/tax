@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
@@ -35,21 +37,21 @@ RSpec.describe Contact, type: :model do
 
       describe 'exists' do
         let(:phone) { old_contact.phone }
-        it { expect(record.errors[:phone].first).to eq("has already been taken") }
+        it { expect(record.errors[:phone].first).to eq('has already been taken') }
       end
     end
 
     context 'category' do
       describe 'missing' do
         let(:category) { '' }
-        it { expect(record.errors[:category].first).to eq("is not included in the list") }
+        it { expect(record.errors[:category].first).to eq('is not included in the list') }
       end
     end
 
     context 'proponent' do
       describe 'missing' do
         let(:proponent_id) { '' }
-        it { expect(record.errors[:proponent].first).to eq("must exist") }
+        it { expect(record.errors[:proponent].first).to eq('must exist') }
       end
     end
   end
