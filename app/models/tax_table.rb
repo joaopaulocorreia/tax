@@ -4,4 +4,6 @@ class TaxTable < ApplicationRecord
   validates :calculated_tax, presence: true
   validates :percentage, presence: true
   validates :tag, presence: true
+
+  has_many :proponents
 end

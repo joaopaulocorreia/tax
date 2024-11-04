@@ -2,10 +2,6 @@
   <h1>Dashboard</h1>
 </div>
 
-<div>
-  <canvas id="myChart"></canvas>
-</div>
-
 <div class='row mt-3'>
   <div class='col'>
     <div class='card'>
@@ -16,39 +12,26 @@
         <table class="table">
           <thead>
             <tr>
-              <th scope="col">#</th>
-              <th scope="col">Name</th>
-              <th scope="col">CPF</th>
-              <th scope="col">Phone</th>
-              <th scope="col">#</th>
+              <th scope="col">Description</th>
+              <th scope="col">Proponents</th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
-              <td>Otto</td>
-              <td>@mdo</td>
-              <td>
-                <a href="#">View</a>
-              </td>
+              <td>Até R$ 1.045,00</td>
+              <td><%= @tags['group_one'] %></td>
             </tr>
             <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
-              <td>Thornton</td>
-              <td>@fat</td>
-              <td>
-                <a href="#">View</a>
-              </td>
+              <td> De R$ 1.045,01 a R$ 2.089,60</td>
+              <td><%= @tags['group_two'] %></td>
             </tr>
             <tr>
-              <th scope="row">3</th>
-              <td colspan="2">Larry the Bird</td>
-              <td>@twitter</td>
-              <td>
-                <a href="#">View</a>
-              </td>
+              <td> De R$ 2.089,61 até R$ 3.134,40</td>
+              <td><%= @tags['group_three'] %></td>
+            </tr>
+            <tr>
+              <td> De R$ 3.134,41 até R$ 6.101,06</td>
+              <td><%= @tags['group_four'] || 0 %></td>
             </tr>
           </tbody>
         </table>
@@ -58,4 +41,15 @@
       </div>
     </div>
   </div>
+</div>
+
+<div>
+  <canvas
+      data-controller='chart'
+      data-chart-one-value="<%= @tags['group_one'] %>"
+      data-chart-two-value="<%= @tags['group_two'] %>"
+      data-chart-three-value="<%= @tags['group_three'] %>"
+      data-chart-four-value="<%= @tags['group_four'] %>"
+      id="myChart" >
+  </canvas>
 </div>

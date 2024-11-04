@@ -6,3 +6,6 @@ import { application } from "./application"
 
 import CalculateTaxController from "./calculate_tax"
 application.register("calculate-tax", CalculateTaxController)
+
+import ChartController from "./chart"
+application.register("chart", ChartController)
