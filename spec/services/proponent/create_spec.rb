@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Services::Proponent::Create do
@@ -5,7 +7,7 @@ RSpec.describe Services::Proponent::Create do
 
   let(:name) { 'name xpto' }
   let(:cpf) { '12334567891' }
-  let(:birthday) { Date.today }
+  let(:birthday) { Time.zone.today }
   let(:salary) { 1000 }
   let(:tax) { 50 }
   let(:tax_table) { create :tax_table }

@@ -1,24 +1,11 @@
-# README
+# Start project
+docker-compose up -d
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+# Run seed
+docker-compose exec -it app bin/rails db:seed
 
-Things you may want to cover:
+# Run tests
+docker-compose exec -it app bundle exec rspec
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# Run rubocop
+docker-compose exec -it app bin/rubocop

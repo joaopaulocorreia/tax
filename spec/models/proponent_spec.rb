@@ -1,9 +1,11 @@
+# frozen_string_literal: true
+
 require 'rails_helper'
 
 RSpec.describe Proponent, type: :model do
   let(:name) { 'name xpto' }
   let(:cpf) { '12334567891' }
-  let(:birthday) { Date.today }
+  let(:birthday) { Time.zone.today }
   let(:salary) { 1000 }
   let(:tax) { 50 }
   let(:tax_table) { create :tax_table }
@@ -51,7 +53,7 @@ RSpec.describe Proponent, type: :model do
 
       describe 'missing' do
         let(:cpf) { '1234' }
-        it { expect(record.errors[:cpf].first).to eq("is the wrong length (should be 11 characters)") }
+        it { expect(record.errors[:cpf].first).to eq('is the wrong length (should be 11 characters)') }
       end
     end
 
@@ -70,26 +72,26 @@ RSpec.describe Proponent, type: :model do
 
       describe 'string' do
         let(:salary) { 'xpto' }
-        it { expect(record.errors[:salary].first).to eq("is not a number") }
+        it { expect(record.errors[:salary].first).to eq('is not a number') }
       end
     end
 
     context 'tax' do
       describe 'missing' do
         let(:tax) { '' }
-        it { expect(record.errors[:tax].first).to eq("fill salary to calculate tax") }
+        it { expect(record.errors[:tax].first).to eq('fill salary to calculate tax') }
       end
 
       describe 'string' do
         let(:tax) { 'xpto' }
-        it { expect(record.errors[:tax].first).to eq("is not a number") }
+        it { expect(record.errors[:tax].first).to eq('is not a number') }
       end
     end
 
     context 'tax_table' do
       describe 'missing' do
         let(:tax_table_id) { '' }
-        it { expect(record.errors[:tax_table].first).to eq("must exist") }
+        it { expect(record.errors[:tax_table].first).to eq('must exist') }
       end
     end
   end
