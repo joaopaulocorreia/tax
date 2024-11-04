@@ -50,6 +50,14 @@ gem 'dry-struct'
 gem 'dry-transaction'
 gem 'dry-validation'
 
+group :test do
+  # https://github.com/rspec/rspec-rails
+  gem 'rspec-rails', '~> 6.1.0'
+
+  # https://github.com/thoughtbot/shoulda-matchers
+  gem 'shoulda-matchers', '~> 6.0'
+end
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem 'debug', platforms: %i[mri windows], require: 'debug/prelude'
@@ -59,6 +67,15 @@ group :development, :test do
 
   # https://github.com/rubocop/rubocop-rails
   gem 'rubocop-rails', require: false
+
+  # https://github.com/thoughtbot/factory_bot_rails
+  gem 'factory_bot_rails'
+
+  # https://github.com/faker-ruby/faker
+  gem 'faker'
+
+  # https://github.com/awesome-print/awesome_print
+  gem 'awesome_print'
 end
 
 group :development do
