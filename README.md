@@ -1,3 +1,6 @@
+# Initial
+Copy .example.env to .env
+
 # Start project
 docker-compose up -d
 
