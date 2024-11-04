@@ -41,8 +41,15 @@ class ProponentsController < ApplicationController
   end
 
   def update
-    if @proponent.update(proponent_params)
-      redirect_to proponent_path(@proponent), notice: 'Proponent updated with success'
+    attributes = proponent_params.to_h
+
+    if attributes[:salary] != @proponent.salary
+      UpdateTaxJob.perform_later(@proponent.id, attributes[:salary])
+      attributes.delete :salary
+    end
+
+    if @proponent.update(attributes)
+      redirect_to proponent_path(@proponent), notice: 'Proponent updated with success. Salary will updated in background'
     else
       render :edit, status: :unprocessable_entity
     end
