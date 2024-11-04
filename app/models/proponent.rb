@@ -6,6 +6,8 @@ class Proponent < ApplicationRecord
 
   validates_presence_of :tax, message: 'fill salary to calculate tax'
 
+  belongs_to :tax_table
+
   has_one :address, dependent: :destroy
   has_many :contacts, dependent: :destroy
 end

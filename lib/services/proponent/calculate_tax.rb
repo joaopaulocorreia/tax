@@ -20,29 +20,30 @@ module Services
       def schedule(ctx)
         case ctx.tag
         when 'group_one'
-          Success calculate_current_tax(ctx.salary, 0, ctx.tax.percentage)
+          Success [round_down(calculate_current_tax(ctx.salary, 0, ctx.tax.percentage), 2), ctx.tax]
         when 'group_two'
           previous_tax = calculate_previous_tax([:group_one])
           current_tax = calculate_current_tax(ctx.salary, ctx.tax.initial, ctx.tax.percentage)
           total = current_tax + previous_tax
 
-          Success round_down(total, 2)
+          Success [round_down(total, 2), ctx.tax]
         when 'group_three'
           previous_tax = calculate_previous_tax([:group_one, :group_two])
           current_tax = calculate_current_tax(ctx.salary, ctx.tax.initial, ctx.tax.percentage)
           total = current_tax + previous_tax
 
-          Success round_down(total, 2)
+          Success [round_down(total, 2), ctx.tax]
         when 'group_four'
           previous_tax = calculate_previous_tax([:group_one, :group_two, :group_three])
           current_tax = calculate_current_tax(ctx.salary, ctx.tax.initial, ctx.tax.percentage)
           total = current_tax + previous_tax
 
-          Success round_down(total, 2)
+          Success [round_down(total, 2), ctx.tax]
         else
           total = calculate_previous_tax([:group_one, :group_two, :group_three, :group_four])
+          tax = TaxTable.find_by_tag :group_four
 
-          Success round_down(total, 2)
+          Success [round_down(total, 2), tax]
         end
       end
 

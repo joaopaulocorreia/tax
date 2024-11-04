@@ -7,6 +7,8 @@ class CreateProponents < ActiveRecord::Migration[7.2]
       t.decimal :salary, null: false, precision: 8, scale: 2
       t.decimal :tax, null: false, precision: 8, scale: 2
 
+      t.references :tax_table, null: false, foreign_key: true
+
       t.timestamps
     end
   end

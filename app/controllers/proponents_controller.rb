@@ -22,8 +22,14 @@ class ProponentsController < ApplicationController
 
     redirect_to new_proponent_path, alert: 'Proponent error' if result.failure?
 
+    calculated_tax, tax_table = result.success
+
     attributes = proponent_params.to_h
-    attributes.store :tax, result.success if result.success <= 0
+
+    if calculated_tax <= 0
+      attributes.store :tax, calculated_tax
+      attributes.store :tax_table_id, tax_table.id
+    end
 
     @proponent = Proponent.new attributes
 
@@ -55,6 +61,6 @@ class ProponentsController < ApplicationController
   end
 
   def proponent_params
-    params.require(:proponent).permit(:name, :cpf, :birthday, :salary, :tax)
+    params.require(:proponent).permit(:name, :cpf, :birthday, :salary, :tax, :tax_table_id)
   end
 end

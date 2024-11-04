@@ -6,7 +6,7 @@ export default class extends Controller {
     url: String
   }
 
-  calculate(){
+  async calculate(){
     if(this.salaryTarget.value.length == 0 ){
       return document.getElementById('proponent_tax').setAttribute('value', '')
     }
@@ -14,8 +14,9 @@ export default class extends Controller {
     const finalUrl = `${this.urlValue}?salary=${this.salaryTarget.value}`
 
     const response = await fetch(finalUrl)
-    const json = await response.json()
+    const data = await response.json()
 
-    document.getElementById('proponent_tax').setAttribute('value', json)
+    document.getElementById('proponent_tax').setAttribute('value', data.calculated_tax)
+    document.getElementById('proponent_tax_table_id').setAttribute('value', data.tax_table_id)
   }
 }
