@@ -18,7 +18,9 @@ module Services
         end
 
         def destroy(proponent, contact_id)
-          contact = proponent.contacts.find(contact_id)
+          contact = proponent.contacts.find_by(id: contact_id)
+          return Failure :record_not_found unless contact
+
           contact.destroy
 
           if contact.destroyed?
