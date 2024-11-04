@@ -2,31 +2,45 @@ module Proponents
   class AddressesController < ApplicationController
     before_action :set_proponent
 
-    def new; end
+    def new;
+      @address = @proponent.build_address
+    end
 
     def show
       redirect_to new_proponent_address_path(@proponent) unless @proponent.address
+      @address = @proponent.address
     end
 
-    def edit; end
+    def edit
+      redirect_to new_proponent_address_path(@proponent) unless @proponent.address
+      @address = @proponent.address
+    end
 
     def create
-      @address = @proponent.create_address address_params
+      service = Services::Proponent::Address::Create.new
+      service.with_step_args(create: [address_params]).call(params[:proponent_id]) do |m|
+        m.success do |address|
+          redirect_to proponent_address_path(params[:proponent_id]), notice: 'Address created with success'
+        end
 
-      if @address.save
-        redirect_to proponent_address_path(@proponent), notice: 'Address created with success'
-      else
-        render :new, status: :unprocessable_entity
+        m.failure do |address|
+          @address = address
+          render :new, status: :unprocessable_entity
+        end
       end
     end
 
     def update
-      @address = @proponent.address
+      service = Services::Proponent::Address::Update.new
+      service.with_step_args(update: [address_params]).call(params[:proponent_id]) do |m|
+        m.success do |address|
+          redirect_to proponent_address_path(params[:proponent_id]), notice: 'Address updated with success'
+        end
 
-      if @address.update(address_params)
-        redirect_to proponent_address_path(@proponent), notice: 'Address updated with success'
-      else
-        render :edit, status: :unprocessable_entity
+        m.failure do |address|
+          @address = address
+          render :edit, status: :unprocessable_entity
+        end
       end
     end
 

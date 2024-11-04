@@ -4,11 +4,11 @@
       <h6>Address</h6>
     </div>
     <div class='card-body'>
-      <%= render 'proponents/addresses/form', address: @proponent.address || @proponent.build_address, proponent_id: @proponent.id %>
+      <%= render 'proponents/addresses/form', address: @address %>
     </div>
     <div class='card-footer d-flex justify-content-between'>
-      <%= link_to 'Cancel', proponent_path(@proponent), class: 'btn btn-danger' %>
-      <button type="submit" form="<%= dom_id(@proponent.build_address) %>" class="btn btn-success">Save</button>
+      <%= link_to 'Cancel', proponent_path(@address.proponent_id), class: 'btn btn-danger' %>
+      <button type="submit" form="<%= dom_id(@address) %>" class="btn btn-success">Save</button>
     </div>
   </div>
 <% end %>

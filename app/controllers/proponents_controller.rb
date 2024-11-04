@@ -52,17 +52,32 @@ class ProponentsController < ApplicationController
       attributes.delete :salary
     end
 
-    if @proponent.update(attributes)
-      redirect_to proponent_path(@proponent), notice: 'Proponent updated with success. Salary will updated in background'
-    else
-      render :edit, status: :unprocessable_entity
+    service = Services::Proponent::Update.new
+    service.with_step_args(update: [attributes]).call(params[:id]) do |m|
+      m.success do |proponent|
+        redirect_to proponent_path(proponent), notice: 'Proponent updated with success.'
+      end
+
+      m.failure :find_proponent do
+        redirect_to proponents_path, alert: 'Record not found'
+      end
+
+      m.failure do |proponent|
+        @proponent = proponent
+        render :edit, status: :unprocessable_entity
+      end
     end
   end
 
   def destroy
-    @proponent.destroy
+    service = Services::Proponent::Destroy.new
+    service.call(params[:id]) do |m|
+      m.success do
+        redirect_to proponents_path, notice: 'Proponent destroyed with success'
+      end
 
-    redirect_to proponents_path, notice: 'Proponent destroyed with success'
+      m.failure
+    end
   end
 
   private

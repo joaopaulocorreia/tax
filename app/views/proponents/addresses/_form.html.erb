@@ -1,6 +1,6 @@
-<%# locals: (address:, proponent_id:, disabled: false) %>
+<%# locals: (address:, disabled: false) %>
 
-<%= form_for address, url: proponent_address_path(proponent_id) do |form| %>
+<%= form_for address, url: proponent_address_path(address.proponent_id) do |form| %>
   <div class='row'>
     <div class="col col-6">
       <%= form.label 'Address', class: 'form-label' %>

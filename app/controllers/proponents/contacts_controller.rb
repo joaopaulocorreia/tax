@@ -8,21 +8,32 @@ module Proponents
     end
 
     def create
-      @contact = @proponent.contacts.new contact_params
       @contacts = @proponent.contacts.page(params[:page]).per(5)
 
-      if @contact.save
-        redirect_to new_proponent_contact_path(@proponent), notice: 'Contact created with success'
-      else
-        render :new, status: :unprocessable_entity
+      service = Services::Proponent::Contact::Create.new
+      service.with_step_args(create: [contact_params]).call(params[:proponent_id]) do |m|
+        m.success do |contact|
+          redirect_to new_proponent_contact_path(contact.proponent_id), notice: 'Contact created with success'
+        end
+
+        m.failure do |contact|
+          @contact = contact
+          render :new, status: :unprocessable_entity
+        end
       end
     end
 
     def destroy
-      @contact = @proponent.contacts.find(params[:id])
-      @contact.destroy
+      service = Services::Proponent::Contact::Destroy.new
+      service.with_step_args(destroy: [params[:id]]).call(params[:proponent_id]) do |m|
+        m.success do |contact|
+          redirect_to new_proponent_contact_path(params[:proponent_id]), notice: 'Contact destroyed with success'
+        end
 
-      redirect_to new_proponent_contact_path(@proponent), notice: 'Contact destroyed with success'
+        m.failure do
+          redirect_to new_proponent_contact_path(params[:proponent_id]), notice: 'Record not destroyed'
+        end
+      end
     end
 
     private

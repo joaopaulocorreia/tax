@@ -4,11 +4,11 @@
       <h6>Address</h6>
     </div>
     <div class='card-body'>
-      <%= render 'proponents/addresses/form', address: @proponent.address, proponent_id: @proponent.id, disabled: true %>
+      <%= render 'proponents/addresses/form', address: @address, disabled: true %>
     </div>
     <div class='card-footer d-flex justify-content-between'>
       <%= link_to 'Back to list', proponents_path, class: 'btn btn-dark' %>
-      <%= link_to 'Edit', edit_proponent_address_path(@proponent), class: 'btn btn-primary' %>
+      <%= link_to 'Edit', edit_proponent_address_path(@address.proponent_id), class: 'btn btn-primary' %>
     </div>
   </div>
 <% end %>
