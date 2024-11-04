@@ -3,7 +3,7 @@
 </div>
 
 <div class='row mt-3'>
-  <div class='col'>
+  <div class='col col-10'>
     <div class='card'>
       <div class='card-header'>
         <h6>List</h6>
@@ -43,13 +43,15 @@
   </div>
 </div>
 
-<div>
-  <canvas
-      data-controller='chart'
-      data-chart-one-value="<%= @tags['group_one'] %>"
-      data-chart-two-value="<%= @tags['group_two'] %>"
-      data-chart-three-value="<%= @tags['group_three'] %>"
-      data-chart-four-value="<%= @tags['group_four'] %>"
-      id="myChart" >
-  </canvas>
+<div class='row'>
+  <div class='col col-10'>
+    <canvas
+        data-controller='chart'
+        data-chart-one-value="<%= @tags['group_one'] %>"
+        data-chart-two-value="<%= @tags['group_two'] %>"
+        data-chart-three-value="<%= @tags['group_three'] %>"
+        data-chart-four-value="<%= @tags['group_four'] %>"
+        id="myChart" >
+    </canvas>
+  </div>
 </div>
