@@ -6,7 +6,7 @@ class Proponent < ApplicationRecord
   validates :birthday, presence: true
   validates :salary, presence: true, numericality: { greater_than: 0 }
 
-  validates :tax, presence: { message: 'fill salary to calculate tax' }
+  validates :tax, presence: { message: 'fill salary to calculate tax' }, numericality: true
 
   belongs_to :tax_table
 
