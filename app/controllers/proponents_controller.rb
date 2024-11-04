@@ -13,30 +13,34 @@ class ProponentsController < ApplicationController
   def edit; end
 
   def create
-    @proponent = Proponent.new proponent_params
-
+    attributes = proponent_params.to_h
+    @proponent = Proponent.new attributes
     return render :new, status: :unprocessable_entity unless @proponent.valid?
 
     service = Services::Proponent::CalculateTax.new
-    result = service.call(proponent_params['salary'].to_f)
+    service.call(proponent_params['salary'].to_f) do |m|
+      m.success do |result|
+        calculated_tax, tax_table = result
 
-    redirect_to new_proponent_path, alert: 'Proponent error' if result.failure?
+        attributes.store :tax, calculated_tax
+        attributes.store :tax_table_id, tax_table.id
+      end
 
-    calculated_tax, tax_table = result.success
-
-    attributes = proponent_params.to_h
-
-    if calculated_tax <= 0
-      attributes.store :tax, calculated_tax
-      attributes.store :tax_table_id, tax_table.id
+      m.failure do
+        return redirect_to new_proponent_path, alert: 'Error on calculate tax'
+      end
     end
 
-    @proponent = Proponent.new attributes
+    service = Services::Proponent::Create.new
+    service.call(attributes) do |m|
+      m.success do |proponent|
+        redirect_to proponent_path(proponent), notice: 'Proponent created with success'
+      end
 
-    if @proponent.save
-      redirect_to proponent_path(@proponent), notice: 'Proponent created with success'
-    else
-      render :new, status: :unprocessable_entity
+      m.failure do |proponent|
+        @proponent = proponent
+        render :new, status: :unprocessable_entity
+      end
     end
   end
 
