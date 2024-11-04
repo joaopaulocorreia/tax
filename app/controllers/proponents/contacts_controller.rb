@@ -9,6 +9,7 @@ module Proponents
 
     def create
       @contact = @proponent.contacts.new contact_params
+      @contacts = @proponent.contacts.page(params[:page]).per(5)
 
       if @contact.save
         redirect_to new_proponent_contact_path(@proponent), notice: 'Contact created with success'
