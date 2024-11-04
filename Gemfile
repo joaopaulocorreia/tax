@@ -52,7 +52,7 @@ gem 'dry-validation'
 
 group :test do
   # https://github.com/rspec/rspec-rails
-  gem 'rspec-rails', '~> 6.1.0'
+  gem 'rspec-rails', '~> 7.0.1'
 
   # https://github.com/thoughtbot/shoulda-matchers
   gem 'shoulda-matchers', '~> 6.0'
