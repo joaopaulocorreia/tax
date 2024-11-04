@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class CalculateTaxController < ApplicationController
   def calculate
     service = Services::Proponent::CalculateTax.new

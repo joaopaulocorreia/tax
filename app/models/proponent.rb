@@ -1,10 +1,12 @@
+# frozen_string_literal: true
+
 class Proponent < ApplicationRecord
   validates :name, presence: true
   validates :cpf, presence: true, length: { is: 11 }
   validates :birthday, presence: true
   validates :salary, presence: true, numericality: { greater_than: 0 }
 
-  validates_presence_of :tax, message: 'fill salary to calculate tax'
+  validates :tax, presence: { message: 'fill salary to calculate tax' }
 
   belongs_to :tax_table
 

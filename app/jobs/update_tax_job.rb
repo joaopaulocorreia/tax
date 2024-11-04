@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UpdateTaxJob < ApplicationJob
   def perform(proponent_id, salary)
     proponent = Proponent.find(proponent_id)
@@ -7,13 +9,11 @@ class UpdateTaxJob < ApplicationJob
       m.success do |result|
         tax, tax_table = result
 
-        unless proponent.update(salary:, tax:, tax_table_id: tax_table.id)
-          raise StandardError.new(proponent.errors)
-        end
+        raise StandardError, proponent.errors unless proponent.update(salary:, tax:, tax_table_id: tax_table.id)
       end
 
       m.failure do |error|
-        raise StandardError.new(error)
+        raise StandardError, error
       end
     end
   end

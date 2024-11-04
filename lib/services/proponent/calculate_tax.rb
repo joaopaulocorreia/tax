@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'ostruct'
 
 module Services
@@ -11,7 +13,7 @@ module Services
       def find_group(salary)
         return Failure :salary_cannot_be_negative if salary.negative?
 
-        tax = TaxTable.where(":salary >= initial and :salary <= final", salary:).take
+        tax = TaxTable.find_by(':salary >= initial and :salary <= final', salary:)
         tag = tax&.tag
 
         Success OpenStruct.new(tax:, salary:, tag:)
@@ -28,34 +30,34 @@ module Services
 
           Success [round_down(total, 2), ctx.tax]
         when 'group_three'
-          previous_tax = calculate_previous_tax([:group_one, :group_two])
+          previous_tax = calculate_previous_tax(%i[group_one group_two])
           current_tax = calculate_current_tax(ctx.salary, ctx.tax.initial, ctx.tax.percentage)
           total = current_tax + previous_tax
 
           Success [round_down(total, 2), ctx.tax]
         when 'group_four'
-          previous_tax = calculate_previous_tax([:group_one, :group_two, :group_three])
+          previous_tax = calculate_previous_tax(%i[group_one group_two group_three])
           current_tax = calculate_current_tax(ctx.salary, ctx.tax.initial, ctx.tax.percentage)
           total = current_tax + previous_tax
 
           Success [round_down(total, 2), ctx.tax]
         else
-          total = calculate_previous_tax([:group_one, :group_two, :group_three, :group_four])
-          tax = TaxTable.find_by_tag :group_four
+          total = calculate_previous_tax(%i[group_one group_two group_three group_four])
+          tax = TaxTable.find_by tag: :group_four
 
           Success [round_down(total, 2), tax]
         end
       end
 
-      def round_down(x, n = 2)
-        ("%.#{n}f" % x.to_d.truncate(n)).to_f
+      def round_down(amount, precision = 2)
+        ("%.#{precision}f" % amount.to_d.truncate(precision)).to_f
       end
 
       def calculate_previous_tax(groups_tag)
         total = TaxTable
-          .where(tag: groups_tag)
-          .map(&:calculated_tax)
-          .sum
+                .where(tag: groups_tag)
+                .map(&:calculated_tax)
+                .sum
 
         round_down(total, 2)
       end

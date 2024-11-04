@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class TaxTable < ApplicationRecord
   validates :initial, presence: true
   validates :final, presence: true

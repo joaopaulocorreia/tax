@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Proponents
   class AddressesController < ApplicationController
     before_action :set_proponent
 
-    def new;
+    def new
       @address = @proponent.build_address
     end
 
@@ -19,7 +21,7 @@ module Proponents
     def create
       service = Services::Proponent::Address::Create.new
       service.with_step_args(create: [address_params]).call(params[:proponent_id]) do |m|
-        m.success do |address|
+        m.success do
           redirect_to proponent_address_path(params[:proponent_id]), notice: 'Address created with success'
         end
 
@@ -33,7 +35,7 @@ module Proponents
     def update
       service = Services::Proponent::Address::Update.new
       service.with_step_args(update: [address_params]).call(params[:proponent_id]) do |m|
-        m.success do |address|
+        m.success do
           redirect_to proponent_address_path(params[:proponent_id]), notice: 'Address updated with success'
         end
 

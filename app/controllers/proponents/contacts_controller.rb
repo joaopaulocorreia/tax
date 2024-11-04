@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Proponents
   class ContactsController < ApplicationController
     before_action :set_proponent
@@ -26,7 +28,7 @@ module Proponents
     def destroy
       service = Services::Proponent::Contact::Destroy.new
       service.with_step_args(destroy: [params[:id]]).call(params[:proponent_id]) do |m|
-        m.success do |contact|
+        m.success do
           redirect_to new_proponent_contact_path(params[:proponent_id]), notice: 'Contact destroyed with success'
         end
 

@@ -1,5 +1,7 @@
+# frozen_string_literal: true
+
 class ProponentsController < ApplicationController
-  before_action :set_proponent, only: [:show, :edit, :update, :destroy]
+  before_action :set_proponent, only: %i[show edit update destroy]
 
   def index
     @proponents = Proponent.page(params[:page]).per(5)
