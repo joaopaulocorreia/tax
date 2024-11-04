@@ -6,7 +6,7 @@ RSpec.describe Contact, type: :model do
   let(:proponent) { create :proponent }
   let(:proponent_id) { proponent.id }
 
-  let(:old_contact) { create :contact }
+  let(:old_contact) { create :contact, proponent: }
 
   let(:attributes) do
     { phone:, category:, proponent_id: }
