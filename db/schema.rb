@@ -40,8 +40,8 @@ ActiveRecord::Schema[7.2].define(version: 2024_11_02_225832) do
     t.string "name", null: false
     t.string "cpf", null: false
     t.date "birthday", null: false
-    t.float "salary", null: false
-    t.float "tax", null: false
+    t.decimal "salary", precision: 8, scale: 2, null: false
+    t.decimal "tax", precision: 8, scale: 2, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

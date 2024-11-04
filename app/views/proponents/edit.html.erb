@@ -4,7 +4,7 @@
       <h6>Edit</h6>
     </div>
     <div class='card-body'>
-      <%= render 'proponents/form', record: @proponent %>
+      <%= render 'proponents/form', record: @proponent, edit: true %>
     </div>
     <div class='card-footer d-flex justify-content-between'>
       <%= link_to 'Cancel', proponent_path(@proponent), class: 'btn btn-danger' %>

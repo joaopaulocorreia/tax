@@ -1,4 +1,4 @@
-<%# locals: (record:, disabled: false) %>
+<%# locals: (record:, disabled: false, edit: false) %>
 
 <%= form_for(record) do |form| %>
   <div class='row'>
@@ -19,6 +19,38 @@
       <%= form.date_field :birthday, class: "form-control #{'is-invalid' if record.errors.has_key? :birthday }", disabled: %>
 
       <div class="invalid-feedback"> <%= record.errors[:birthday].first %> </div>
+    </div>
+    <div class="col col-3">
+      <% if edit %>
+        <%= form.label 'Salary', class: 'form-label' %>
+        <%= form.text_field :salary,
+          class: "form-control #{'is-invalid' if record.errors.has_key? :salary }",
+          disabled: %>
+
+        <div class="invalid-feedback"> <%= record.errors[:salary].first %> </div>
+      <% else %>
+        <div data-controller="calculate-tax" data-calculate-tax-url-value="<%= calculate_tax_path %>">
+          <%= form.label 'Salary', class: 'form-label' %>
+          <%= form.text_field :salary,
+            class: "form-control #{'is-invalid' if record.errors.has_key? :salary }",
+            data: { calculate_tax_target: :salary, action: "keyup->calculate-tax#calculate" },
+            disabled: %>
+
+          <div class="invalid-feedback"> <%= record.errors[:salary].first %> </div>
+        </div>
+      <% end %>
+    </div>
+
+    <div class="col col-3">
+      <% unless edit %>
+        <%= form.label 'Tax', class: 'form-label' %>
+        <%= form.text_field :tax,
+          class: "form-control #{'is-invalid' if record.errors.has_key? :tax }",
+          readonly: true,
+          disabled: %>
+
+        <div class="invalid-feedback"> <%= record.errors[:tax].first %> </div>
+      <% end %>
     </div>
   </div>
 <% end %>

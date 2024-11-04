@@ -15,6 +15,18 @@ class ProponentsController < ApplicationController
   def create
     @proponent = Proponent.new proponent_params
 
+    return render :new, status: :unprocessable_entity unless @proponent.valid?
+
+    service = Services::Proponent::CalculateTax.new
+    result = service.call(proponent_params['salary'].to_f)
+
+    redirect_to new_proponent_path, alert: 'Proponent error' if result.failure?
+
+    attributes = proponent_params.to_h
+    attributes.store :tax, result.success if result.success <= 0
+
+    @proponent = Proponent.new attributes
+
     if @proponent.save
       redirect_to proponent_path(@proponent), notice: 'Proponent created with success'
     else
@@ -43,6 +55,6 @@ class ProponentsController < ApplicationController
   end
 
   def proponent_params
-    params.require(:proponent).permit(:name, :cpf, :birthday)
+    params.require(:proponent).permit(:name, :cpf, :birthday, :salary, :tax)
   end
 end
